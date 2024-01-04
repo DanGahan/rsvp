@@ -11,7 +11,7 @@ services:
       timeout: 5s
       retries: 5
 
-  web:
+  backend:
     build: ./backend
     ports:
       - "5555:5000"
@@ -20,3 +20,8 @@ services:
         condition: service_healthy
     environment:
       DATABASE_URL: postgresql://postgres:password@db:5432/rsvp_app
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:4200"

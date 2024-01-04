@@ -1,0 +1,25 @@
+<!-- frontend/templates/form.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+    <h1>Submit Data</h1>
+    <form id="submitForm" action="javascript:void(0);">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <!-- Add other form fields as needed -->
+        <input type="submit" value="Submit">
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/form.js' %}"></script>
+</body>
+</html>
+

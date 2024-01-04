@@ -1,23 +1,22 @@
-# Use the official Node.js image as a parent image
-FROM node:latest
+# Use an official Python runtime as a parent image
+FROM python:3.11
+
+# Set environment variables
+ENV PYTHONUNBUFFERED 1
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json into the container
-COPY package*.json ./
+# Copy the requirements.txt file and install Python dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Angular CLI
-RUN npm install -g @angular/cli@latest
+# Copy the content of the local directory to the working directory in the container
+COPY . /app/
 
-# Install project dependencies
-RUN npm install
+# Set the command to run the application using Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "frontend.wsgi:application"]
 
-# Copy the current directory contents into the container
-COPY . .
+# Expose port 8000
+EXPOSE 8000
 
-# Make port 4200 available to the world outside this container
-EXPOSE 4200
-
-# Run ng serve when the container launches
-CMD ["npm", "start"]
