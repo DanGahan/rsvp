@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import url_quote
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 
@@ -22,6 +25,9 @@ class rsvps(db.Model):
 def create_rsvp():
     data = request.json
 
+     # Log received data
+    logging.debug("Received data: %s", data)
+
     # Validate input
     if not all(key in data for key in ['name', 'plus_one', 'song_suggestion']):
         return jsonify({'error': 'Missing required fields'}), 400
@@ -39,6 +45,6 @@ def create_rsvp():
     return jsonify({'message': 'RSVP created successfully'}), 201
 
 if __name__ == '__main__':
+    
     db.create_all()  # Create the database tables
-    app.run(debug=True)
-
+    app.run(debug=True, host='0.0.0.0')

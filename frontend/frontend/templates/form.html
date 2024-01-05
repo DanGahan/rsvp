@@ -10,11 +10,15 @@
 </head>
 <body>
     <h1>Submit Data</h1>
-    <form id="submitForm" action="javascript:void(0);">
-        {% csrf_token %}
+    <form id="submitForm" method="post" action="{% url 'submit_data' %}">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
-        <!-- Add other form fields as needed -->
+        <label for="plus_one">Plus One?:</label> 
+        <input type="text" id="plus_one" name="plus_one" required><br><br> 
+        <label for="plus_one_name">Plus One Name:</label> 
+        <input type="text" id="plus_one_name" name="plus_one_name" required><br><br>
+        <label for="song_suggestion">Song Suggestion:</label>
+        <input type="text" id="song_suggestion" name="song_suggestion" required><br><br>
         <input type="submit" value="Submit">
     </form>
 

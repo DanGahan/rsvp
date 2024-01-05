@@ -8,13 +8,16 @@ $(document).ready(function() {
         // Gather the form data
         var formData = {
             'name': $('#name').val(),
+            'plus_one': $('#plus_one').val(),
+            'plus_one_name' $('#plus_one_name').val(),
+            'song_suggestion' $('#song_suggestion').val(),
             // Add other form fields as needed
         };
 
         // Make an AJAX request to the backend API
         $.ajax({
             type: 'POST',
-            url: '/api/submit/',  // Update the URL to match your backend API endpoint
+            url: 'http://backend:5000/rsvp/',  // Update the URL to match your backend API endpoint
             data: formData,
             dataType: 'json',
             success: function(response) {
