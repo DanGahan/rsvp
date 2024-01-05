@@ -6,24 +6,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Form</title>
+    <title>Bethan and Dan are getting married!!!!</title>
+	<!-- Stylesheets -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/slicknav.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/slick.css' %}" rel="stylesheet">
+	
+
+	<!-- Main Stylesheets -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Submit Data</h1>
-    <form id="submitForm" method="post" action="{% url 'submit_data' %}">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="plus_one">Plus One?:</label> 
-        <input type="text" id="plus_one" name="plus_one" required><br><br> 
-        <label for="plus_one_name">Plus One Name:</label> 
-        <input type="text" id="plus_one_name" name="plus_one_name" required><br><br>
-        <label for="song_suggestion">Song Suggestion:</label>
-        <input type="text" id="song_suggestion" name="song_suggestion" required><br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 
+    <!-- Header Section -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-4 col-md-3 order-2 order-sm-1">
+					<div class="header__social">
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-instagram"></i></a>
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-6 order-1  order-md-2 text-center">
+					<a href="./index.html" class="site-logo">
+						<img src="img/logo.png" alt="">
+					</a>
+				</div>
+				<div class="col-sm-4 col-md-3 order-3 order-sm-3">
+					<div class="header__switches">
+						<a href="#" class="search-switch"><i class="fa fa-search"></i></a>
+						<a href="#" class="nav-switch"><i class="fa fa-bars"></i></a>
+						<a href="#"><i class="fa fa-shopping-cart"></i></a>
+					</div>
+				</div>
+			</div>
+			<nav class="main__menu">
+				<ul class="nav__menu">
+					<img src="{% static 'img/banner.jpg' %}" alt="">
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<!-- Header Section end -->
+
+    <!-- Blog Page -->
+	<div class="blog__single__page">
+		<div class="blog__slider">
+			<div class="blog__slider__item">
+				<img src="{% static 'img/1.jpeg' %}" alt="">
+			</div>
+			<div class="blog__slider__item">
+				<img src="{% static 'img/2.jpeg' %}" alt="">
+			</div>
+			<div class="blog__slider__item">
+				<img src="{% static 'img/3.jpeg' %}" alt="">
+			</div>
+			<div class="blog__slider__item">
+				<img src="{% static 'img/4.jpeg' %}" alt="">
+			</div>
+			<div class="blog__slider__item">
+				<img src="{% static 'img/5.jpeg' %}" alt="">
+			</div>
+			<div class="blog__slider__item">
+				<img src="{% static 'img/6.jpeg' %}" alt="">
+			</div>
+		</div>
+		<article class="blog__article">
+			<div class="blog__container">
+				<div class="blog__header">
+					<div class="blog__cata">17/10/2024</div>
+					<h3 class="blog__single__title">Llanerch Vineyard</h3>
+					</div>
+				</div>
+                <div class="blog__container"></div>
+               
+            </div>
+			</blockquote>
+			<div class="blog__container">
+				<p>Bethan and Daniel are delighted to invite you to attend their wedding on 14/10/2014 at Llanerch Vineyard</p>
+				<h4>Please RSVP using the form below:</h4>
+                <form id="submitForm" method="post" action="{% url 'submit_data' %}">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required><br><br>
+                    <label for="plus_one">Plus One?:</label> 
+                    <input type="text" id="plus_one" name="plus_one" required><br><br> 
+                    <label for="plus_one_name">Plus One Name:</label> 
+                    <input type="text" id="plus_one_name" name="plus_one_name" required><br><br>
+                    <label for="song_suggestion">Song Suggestion:</label>
+                    <input type="text" id="song_suggestion" name="song_suggestion" required><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+				
+			</div>
+			<div class="blog__banner pt-4 pb-5">
+			</div>
+		</article>
+	</div>
+	<!-- Blog Page end -->
+
+  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/form.js' %}"></script>
-</body>
-</html>
+    <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 
+    </body>
+</html>
