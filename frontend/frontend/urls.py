@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.form_view, name='form_view'),
     path('submit/', views.submit_data, name='submit_data'),
+    path('success/', views.success_page_view, name='success_page'),
 ]
 
 # Add the static files serving configuration
