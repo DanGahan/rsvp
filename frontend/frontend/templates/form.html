@@ -84,61 +84,52 @@
 				<div class="blog__header">
 					<div class="blog__cata">17/10/2024</div>
 					<h3 class="blog__single__title">Llanerch Vineyard</h3>
-					</div>
-				</div>
-                <div class="blog__container"></div>
+			 </div>
+			</div>
+      <div class="blog__container">
                
-            </div>
 			</blockquote>
-			<div class="i>
+			<div class="blog_item">
 				<p>Bethan and Daniel are delighted to invite you to attend their wedding on 14/10/2014 at Llanerch Vineyard</p>
 				<h4>Please RSVP using the form below:</h4>
-                <form class="form-horizontal" id="submitForm" method="post" action="{% url 'submit_data' %}">
-                    <div class="form-group">
-						<label class="control-label col-sm-2" for="name">Name:</label>
-						<div class="col-sm-10">
-							<input type="text" id="name" name="name" required>
-						</div>
-					</div>
-					<div class="form-group">		
-						<label class="control-label col-sm-2" for="plus_one">Plus One:</label> 
-						<div class="col-sm-10">
-							<select class="form-control" id="plus_one" name="plus_one" required>
-								<option>Yes</option>
-      							<option>No</option>
-							</div>
-						</select>
-					</div>
-					<div class="form-group"> 
-						<label class="control-label col-sm-2" for="plus_one_name">Plus One Name:</label> 
-						<div class="col-sm-10">	
-							<input type="text" id="plus_one_name" name="plus_one_name" required>
-						</div>
-					</div>
-					<div class="form-group">		
-						<label class="control-label col-sm-2" for="song_suggestion">Song Suggestion:</label>
-						<div class="col-sm-10">	
-							<input type="text" id="song_suggestion" name="song_suggestion" required>
-						</div>
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Submit">
-					</div>
-                </form>
-				
-			</div>
-			<div class="blog__banner pt-4 pb-5">
-			</div>
+<form class="form-horizontal" id="submitForm" method="post" action="{% url 'submit_data' %}">
+  <div class="row mb-3">
+    <label class="control-label col-sm-2" for="name">Name:</label>
+    <div class="col-sm-10">
+      <input type="text" id="name" name="name" required>
+    </div>
+  </div> 
+  <div class="row mb-3">
+    <label class="control-label col-sm-2" for="plus_one">Plus One:</label>
+    <div class="col-sm-10">
+      <select class="selectpicker" id="plus_one" name="plus_one" required>
+        <option value="No">No</option>
+        <option value ="Yes">Yes</option>
+      </select>
+    </div>
+  </div>  
+  <div class="row mb-3">
+    <label class="control-label col-sm-2" for="plus_one_name">Plus One Name:</label>
+    <div class="col-sm-10">
+      <input type="text" id="plus_one_name" name="plus_one_name" required disabled>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="control-label col-sm-2" for="song_suggestion">Song Suggestion:</label      >
+    <div class="col-sm-10">
+      <input type="text" id="song_suggestion" name="song_suggestion" required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 		</article>
 	</div>
 	<!-- Blog Page end -->
 
-  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/form.js' %}"></script>
     <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
     <script src="{% static 'js/slick.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-
     </body>
 </html>
