@@ -44,6 +44,12 @@ def create_rsvp():
 
     return jsonify({'message': 'RSVP created successfully'}), 201
 
+@app.route('/rsvps', methods=['GET'])
+def get_all_rsvps():
+    all_rsvps = rsvps.query.all()
+    rsvps_list = [{'id': rsvp.id, 'name': rsvp.name, 'plus_one': rsvp.plus_one, 'plus_one_name': rsvp.plus_one_name, 'song_suggestion': rsvp.song_suggestion} for rsvp in all_rsvps]
+    return jsonify(rsvps_list)
+
 if __name__ == '__main__':
     
     db.create_all()  # Create the database tables
