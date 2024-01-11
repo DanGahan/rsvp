@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.form_view, name='form_view'),
     path('submit/', views.submit_data, name='submit_data'),
     path('success/', views.success_page_view, name='success_page'),
+    path('all_rsvps/', views.get_all_rsvps, name='get_all_rsvps'),
 ]
 
 # Add the static files serving configuration

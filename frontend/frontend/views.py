@@ -5,6 +5,18 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 
+def get_all_rsvps(request):
+    api_url = 'http://backend:5000/rsvps'  # Update the URL to match your Flask API endpoint
+    response = requests.get(api_url)
+
+    if response.status_code == 200:
+        rsvps_data = response.json()
+        return render(request, 'all_rsvps.html', {'rsvps_data': rsvps_data})
+    else:
+        # Handle the API error
+        return render(request, 'error_page.html', {'error_message': 'Failed to fetch RSVP data'})
+
+
 def form_view(request):
     return render(request, 'form.html')
 

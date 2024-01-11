@@ -1,0 +1,17 @@
+<!-- frontend/templates/all_rsvps.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All RSVPs</title>
+</head>
+<body>
+    <h1>All RSVPs</h1>
+    <ul>
+        {% for rsvp in rsvps_data %}
+            <li>{{ rsvp.name }} - {{ rsvp.plus_one }} - {{ rsvp.plus_one_name }} - {{ rsvp.song_suggestion }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
