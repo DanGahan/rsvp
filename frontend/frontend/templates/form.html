@@ -93,25 +93,33 @@
 			<div class="i>
 				<p>Bethan and Daniel are delighted to invite you to attend their wedding on 14/10/2014 at Llanerch Vineyard</p>
 				<h4>Please RSVP using the form below:</h4>
-                <form id="submitForm" method="post" action="{% url 'submit_data' %}">
+                <form class="form-horizontal" id="submitForm" method="post" action="{% url 'submit_data' %}">
                     <div class="form-group">
-						<label for="name">Name:</label>
-                    	<input type="text" id="name" name="name" required>
+						<label class="control-label col-sm-2" for="name">Name:</label>
+						<div class="col-sm-10">
+							<input type="text" id="name" name="name" required>
+						</div>
 					</div>
 					<div class="form-group">		
-						<label for="plus_one">Plus One?:</label> 
-						<select class="form-control" id="plus_one" name="plus_one" required>
-							<option>Yes</option>
-      						<option>No</option>
+						<label class="control-label col-sm-2" for="plus_one">Plus One:</label> 
+						<div class="col-sm-10">
+							<select class="form-control" id="plus_one" name="plus_one" required>
+								<option>Yes</option>
+      							<option>No</option>
+							</div>
 						</select>
 					</div>
 					<div class="form-group"> 
-						<label for="plus_one_name">Plus One Name:</label> 
-                    	<input type="text" id="plus_one_name" name="plus_one_name" required>
+						<label class="control-label col-sm-2" for="plus_one_name">Plus One Name:</label> 
+						<div class="col-sm-10">	
+							<input type="text" id="plus_one_name" name="plus_one_name" required>
+						</div>
 					</div>
 					<div class="form-group">		
-						<label for="song_suggestion">Song Suggestion:</label>
-                    	<input type="text" id="song_suggestion" name="song_suggestion" required>
+						<label class="control-label col-sm-2" for="song_suggestion">Song Suggestion:</label>
+						<div class="col-sm-10">	
+							<input type="text" id="song_suggestion" name="song_suggestion" required>
+						</div>
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Submit">
