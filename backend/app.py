@@ -17,8 +17,11 @@ db = SQLAlchemy(app)
 class rsvps(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
+    attending = db.Column(db.Boolean, nullable=False)
+    vegetarian = db.Column(db.Boolean, nullable=False)
     plus_one = db.Column(db.String(10), nullable=False)
     plus_one_name = db.Column(db.String(100))
+    plus_one_vegetarian = db.Column(db.Boolean, nullable=False)
     song_suggestion = db.Column(db.String(200))
 
 @app.route('/rsvp', methods=['POST'])
@@ -33,13 +36,16 @@ def create_rsvp():
         return jsonify({'error': 'Missing required fields'}), 400
 
     name = data['name']
+    attending = data['attending']
+    vegetarian = data['vegetarian']
     plus_one = data['plus_one']
     plus_one_name = data.get('plus_one_name', '')
+    plus_one_vegetarian = data.get('plus_one_vegetarian', False)
     song_suggestion = data['song_suggestion']
 
     # Create a new RSVP entry
-    rsvp = rsvps(name=name, plus_one=plus_one, plus_one_name=plus_one_name, song_suggestion=song_suggestion)
-    db.session.add(rsvp)
+    rsvp = rsvps(name=name, attending=attending, vegetarian=vegetarian, plus_one=plus_one, plus_one_name=plus_one_name, plus_one_vegetarian=plus_one_vegetarian, song_suggestion=song_suggestion)
+    db.session.add(rsvp) 
     db.session.commit()
 
     return jsonify({'message': 'RSVP created successfully'}), 201
@@ -47,7 +53,7 @@ def create_rsvp():
 @app.route('/rsvps', methods=['GET'])
 def get_all_rsvps():
     all_rsvps = rsvps.query.all()
-    rsvps_list = [{'id': rsvp.id, 'name': rsvp.name, 'plus_one': rsvp.plus_one, 'plus_one_name': rsvp.plus_one_name, 'song_suggestion': rsvp.song_suggestion} for rsvp in all_rsvps]
+    rsvps_list = [{'id': rsvp.id, 'name': rsvp.name, 'attending': rsvp.attending, 'vegetarian': rsvp.vegetarian, 'plus_one': rsvp.plus_one, 'plus_one_name': rsvp.plus_one_name, 'plus_one_vegetarian': rsvp.plus_one_vegetarian, 'song_suggestion': rsvp.song_suggestion} for rsvp in all_rsvps]
     return jsonify(rsvps_list)
 
 if __name__ == '__main__':
