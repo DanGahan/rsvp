@@ -1,5 +1,6 @@
 $(document).ready(function() {
     // Event handler when the document is ready
+
     $('#plus_one').on('change', function() {
         var plusOneValue = $(this).val();
         if (plusOneValue === 'Yes') {

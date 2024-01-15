@@ -48,8 +48,11 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Attending?</th>
+                    <th>Vegatarian</th>
                     <th>Plus One</th>
                     <th>Plus One Name</th>
+                    <th>Plus One Vegetarian?</th>
                     <th>Song Suggestion</th>
                 </tr>
             </thead>
@@ -58,8 +61,11 @@
                     <tr>
                         <td>{{ rsvp.id }}</td>
                         <td>{{ rsvp.name }}</td>
+                        <td>{{ rsvp.attending }}</td>
+                        <td>{{ rsvp.vegetarian }}</td>
                         <td>{{ rsvp.plus_one }}</td>
                         <td>{{ rsvp.plus_one_name }}</td>
+                        <td>{{ rsvp.plus_one_vegetarian }}</td>
                         <td>{{ rsvp.song_suggestion }}</td>
                     </tr>
                 {% endfor %}
