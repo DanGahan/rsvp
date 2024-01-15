@@ -16,6 +16,8 @@ def get_all_rsvps(request):
         # Handle the API error
         return render(request, 'error_page.html', {'error_message': 'Failed to fetch RSVP data'})
 
+def header_view(request):
+    return render(request, 'header.html')
 
 def form_view(request):
     return render(request, 'form.html')
