@@ -14,7 +14,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the content of the local directory to the working directory in the container
 COPY . /app/
 
-
 # Run collectstatic command against the frontend directory
 # RUN python manage.py collectstatic --no-input --clear --settings=frontend.settings
 

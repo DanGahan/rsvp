@@ -10,7 +10,8 @@ urlpatterns = [
     path('submit/', views.submit_data, name='submit_data'),
     path('success/', views.success_page_view, name='success_page'),
     path('all_rsvps/', views.get_all_rsvps, name='get_all_rsvps'),
-   path('header/', views.header_view, name='header_view'), 
+    path('header/', views.header_view, name='header_view'), 
+    path('footer/', views.footer_view, name='footer_view'),
 ]
 
 # Add the static files serving configuration

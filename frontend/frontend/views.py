@@ -19,11 +19,19 @@ def get_all_rsvps(request):
 def header_view(request):
     return render(request, 'header.html')
 
+def footer_view(request):
+    return render(request, 'footer.html')
+
 def form_view(request):
     return render(request, 'form.html')
 
 def success_page_view(request):
-    return render(request, 'success.html')  # replace 'path_to_static_page.html' with the actual path to your static HTML file
+    rsvp_success = request.session.get('rsvp_success', False)
+    if rsvp_success: 
+            success_message = 'RSVP submitted successfully!'
+            return render(request, 'success.html', {'success_message': success_message})
+    else: 
+        return render(request, 'success.html')
 
 def submit_data(request):
     if request.method == 'POST':
@@ -56,7 +64,9 @@ def submit_data(request):
             #api_response = response.json()
             # ...
             #return JsonResponse({'status': 'success', 'message': 'Data submitted successfully'})
-            return redirect('success_page')
+                    # Redirect to the success page with a success parameter
+           request.session['rsvp_success'] = True
+           return redirect('success_page')
         else:
             return JsonResponse({'status': 'error', 'message': 'Failed to submit data to backend'}, status=500)
     else:
