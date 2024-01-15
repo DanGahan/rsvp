@@ -1,17 +1,153 @@
 <!-- frontend/templates/all_rsvps.html -->
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+
     <meta charset="UTF-8">
-    <title>All RSVPs</title>
+    <title>Bethan and Dan are getting married!!!!</title>
+	<!-- Stylesheets -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/slicknav.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/slick.css' %}" rel="stylesheet">
+	
+
+	<!-- Main Stylesheets -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
 </head>
 <body>
-    <h1>All RSVPs</h1>
-    <ul>
-        {% for rsvp in rsvps_data %}
-            <li>{{ rsvp.name }} - {{ rsvp.plus_one }} - {{ rsvp.plus_one_name }} - {{ rsvp.song_suggestion }}</li>
-        {% endfor %}
-    </ul>
-</body>
+    <!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+    <!-- Header Section -->
+	<header class="header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-4 col-md-3 order-2 order-sm-1">
+					<div class="header__social">
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-6 order-1  order-md-2 text-center">
+					<a href="./index.html" class="site-logo">
+						<img src="img/logo.png" alt="">
+					</a>
+				</div>
+				<div class="col-sm-4 col-md-3 order-3 order-sm-3">
+					<div class="header__switches">
+					</div>
+				</div>
+			</div>
+			<nav class="main__menu">
+				<ul class="nav__menu">
+					<h3>The Marriage of</h3>
+					<h1>Bethan & Daniel</h1>
+					<h3>Llanerch Vineyard</h3>
+					<h4>17/10/2024</h4>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<!-- Header Section end -->
+
+    <!-- Blog Page -->
+	<div class="blog__single__page">
+		<div class="blog__slider">
+			<div class="blog__slider__item">
+				<img src="{% static 'img/1.jpeg' %}" alt="">
+			</div>
+			<div class="blog__slider__item">
+				<img src="{% static 'img/2.jpeg' %}" alt="">
+			</div>
+			<div class="blog__slider__item">
+				<img src="{% static 'img/3.jpeg' %}" alt="">
+			</div>
+			<div class="blog__slider__item">
+				<img src="{% static 'img/4.jpeg' %}" alt="">
+			</div>
+			<div class="blog__slider__item">
+				<img src="{% static 'img/5.jpeg' %}" alt="">
+			</div>
+			<div class="blog__slider__item">
+				<img src="{% static 'img/6.jpeg' %}" alt="">
+			</div>
+		</div>
+		<article class="blog__article">
+			<div class="blog__container">
+				<div class="blog__header">
+					<div class="blog__cata">17/10/2024</div>
+					<h3 class="blog__single__title">Llanerch Vineyard</h3>
+			 </div>
+			</div>
+      <div class="blog__container">
+
+    <!-- Blog Page -->
+	<div class="blog__single__page">
+        <h2>All RSVPs</h2>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Plus One</th>
+                    <th>Plus One Name</th>
+                    <th>Song Suggestion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rsvp in rsvps_data %}
+                    <tr>
+                        <td>{{ rsvp.id }}</td>
+                        <td>{{ rsvp.name }}</td>
+                        <td>{{ rsvp.plus_one }}</td>
+                        <td>{{ rsvp.plus_one_name }}</td>
+                        <td>{{ rsvp.song_suggestion }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <hr>
+
+		</article>
+	</div>
+	<!-- Blog Page end -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    </body>
 </html>
