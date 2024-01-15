@@ -20,7 +20,7 @@ COPY . /app/
 
 
 # Set the command to run the application using Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "frontend.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "frontend.wsgi:application", "--workers", "3", "--timeout", "15"]
 
 # Expose port 8000
 EXPOSE 8000
