@@ -1,5 +1,7 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8-slim-buster
+
+# Stage 1: Build stage
+FROM python:3.8-slim-buster AS builder
 
 # Set the working directory in the container
 WORKDIR /app
@@ -9,6 +11,15 @@ COPY . .
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Stage 2: Test stage
+FROM builder AS tester
+
+# Run the unit tests
+CMD ["python", "-m", "unittest", "APIunittest.py"]
+
+# Stage 3: Production stage
+FROM builder AS production
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000

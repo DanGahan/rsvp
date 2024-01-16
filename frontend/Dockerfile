@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11
+FROM python:3.11 AS builder
 
 # Set environment variables
 ENV PYTHONUNBUFFERED 1
@@ -17,6 +17,15 @@ COPY . /app/
 # Run collectstatic command against the frontend directory
 # RUN python manage.py collectstatic --no-input --clear --settings=frontend.settings
 
+# Stage 2: Test stage
+FROM builder AS tester
+
+#Run Unit Tests
+CMD ["python", "manage.py", "test", "--settings=frontend.settings"]
+#RUN python manage.py test --settings=frontend.settings
+
+# Stage 3: Production stage
+FROM builder AS production
 
 # Set the command to run the application using Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "frontend.wsgi:application", "--workers", "3", "--timeout", "15"]
