@@ -18,11 +18,11 @@ class rsvps(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     attending = db.Column(db.String(10), nullable=False)
-    vegetarian = db.Column(db.String(10), nullable=False)
-    plus_one = db.Column(db.String(10), nullable=False)
-    plus_one_name = db.Column(db.String(100))
-    plus_one_vegetarian = db.Column(db.String(10), nullable=False)
-    song_suggestion = db.Column(db.String(200))
+    vegetarian = db.Column(db.String(10), nullable=True)
+    plus_one = db.Column(db.String(10), nullable=True)
+    plus_one_name = db.Column(db.String(100), nullable=True)
+    plus_one_vegetarian = db.Column(db.String(10), nullable=True)
+    song_suggestion = db.Column(db.String(200), nullable=True)
 
 @app.route('/rsvp', methods=['POST'])
 def create_rsvp():
