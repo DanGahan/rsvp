@@ -56,6 +56,43 @@ def get_all_rsvps():
     rsvps_list = [{'id': rsvp.id, 'name': rsvp.name, 'attending': rsvp.attending, 'vegetarian': rsvp.vegetarian, 'plus_one': rsvp.plus_one, 'plus_one_name': rsvp.plus_one_name, 'plus_one_vegetarian': rsvp.plus_one_vegetarian, 'song_suggestion': rsvp.song_suggestion} for rsvp in all_rsvps]
     return jsonify(rsvps_list)
 
+  # Define the model
+class evening_rsvps(db.Model):
+      id = db.Column(db.Integer, primary_key=True)
+      name = db.Column(db.String(100), nullable=False)
+      attending = db.Column(db.String(10), nullable=False)
+      plus_one = db.Column(db.String(10), nullable=True)
+      plus_one_name = db.Column(db.String(100), nullable=True)
+
+@app.route('/evening_rsvp', methods=['POST'])
+def create_evening_rsvp():
+      data = request.json
+
+       # Log received data
+      logging.debug("Received data: %s", data)
+
+      # Validate input
+      if not all(key in data for key in ['name', 'attending']):
+          return jsonify({'error': 'Missing required fields'}), 400
+
+      name = data['name']
+      attending = data['attending']
+      plus_one = data['plus_one']
+      plus_one_name = data.get('plus_one_name', '')
+
+      # Create a new RSVP entry
+      evening_rsvp = evening_rsvps(name=name, attending=attending, plus_one=plus_one, plus_one_name=plus_one_name)
+      db.session.add(evening_rsvp)
+      db.session.commit()
+
+      return jsonify({'message': 'Evening RSVP created successfully'}), 201
+
+@app.route('/evening_rsvps', methods=['GET'])
+def get_all_evening_rsvps():
+      all_evening_rsvps = evening_rsvps.query.all()
+      evening_rsvps_list = [{'id': evening_rsvp.id, 'name': evening_rsvp.name, 'attending': evening_rsvp.attending, 'plus_one': evening_rsvp.plus_one, 'plus_one_name': evening_rsvp.plus_one_name} for evening_rsvp in all_evening_rsvps]
+      return jsonify(evening_rsvps_list)
+
 if __name__ == '__main__':
     
     db.create_all()  # Create the database tables
