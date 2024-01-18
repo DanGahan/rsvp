@@ -57,7 +57,7 @@ jobs:
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
-        sarif_file: snyk_db.sarif
+        sarif_file: snyk.sarif
         
     - name: Run Snyk to check backend Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities.
@@ -75,7 +75,7 @@ jobs:
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
-        sarif_file: snyk_backend.sarif
+        sarif_file: snyk.sarif
 
     - name: Run Snyk to check frontend Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities.
@@ -93,5 +93,5 @@ jobs:
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
-        sarif_file: snyk_frontend.sarif
+        sarif_file: snyk.sarif
 
