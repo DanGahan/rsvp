@@ -2,6 +2,6 @@ Flask==2.1.0
 flask-testing
 SQLAlchemy==1.4.23
 psycopg2-binary==2.9.1
-werkzeug==2.1.0
+werkzeug==2.3.8
 Flask-SQLAlchemy==2.5.1  # Specify the version compatible with Flask and SQLAlchemy
 
