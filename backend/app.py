@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.utils import url_quote
+from urllib.parse import quote as url_quote
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
@@ -96,4 +96,4 @@ def get_all_evening_rsvps():
 if __name__ == '__main__':
     
     db.create_all()  # Create the database tables
-    app.run(debug=false, host='0.0.0.0')
+    app.run(host='0.0.0.0')
