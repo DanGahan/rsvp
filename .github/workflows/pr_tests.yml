@@ -1,0 +1,72 @@
+name: Pull Request Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Start containers
+        run: |
+          docker-compose up -d
+
+      - name: Verify frontend is accessible
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          url: http://localhost:8000
+          method: GET
+          expected: '[301, 200]'
+        continue-on-error: true
+ 
+      - name: Verify backend GET is accessible
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          url: http://localhost:5555/rsvps
+          method: GET
+          expected: '[301, 200]'
+        continue-on-error: true
+
+      - name: Verify backend GET is accessible
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          url: http://localhost:5555/evening_rsvps
+          method: GET
+          expected: '[301, 200]'
+        continue-on-error: true
+
+      - name: Verify backend POST is accessible
+        id: rsvpPOST
+        uses: fjogeleit/http-request-action@v1.15.2
+        with:
+          url: 'http://localhost:5555/rsvp'
+          method: POST
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"name":"John","attending":"Yes","vegetarian":"Yes","plus_one":"yes","plus_one_name":"Jane","plus_one_vegitarian":"No ","song_suggestion":"Song name"}'
+
+      - name: Show Response
+        run: |
+          echo ${{ steps.rsvpPOST.outputs.response }}
+          echo ${{ steps.rsvpPOST.outputs.headers }}
+
+      - name: Verify backend POST is accessible
+        id: eveningRsvpPOST
+        uses: fjogeleit/http-request-action@v1.15.2
+        with:
+          url: 'http://localhost:5555/evening_rsvp'
+          method: POST
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"name":"John","attending":"Yes","plus_one":"yes","plus_one_name":"Jane"}'
+
+      - name: Show Response
+        run: |
+          echo ${{ steps.eveningRsvpPOST.outputs.response }}
+          echo ${{ steps.eveningRsvpPOST.outputs.headers }}
+
+     
