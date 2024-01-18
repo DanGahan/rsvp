@@ -50,7 +50,7 @@ jobs:
           data: '{"name":"John","attending":"Yes","vegetarian":"Yes","plus_one":"yes","plus_one_name":"Jane","plus_one_vegitarian":"No ","song_suggestion":"Song name"}'
 
       - name: Show Response
-      run: |
-        echo ${{ steps.myRequest.outputs.response }}
-        echo ${{ steps.myRequest.outputs.headers }}
-        echo ${{ fromJson(steps.myRequest.outputs.response).field_you_want_to_access }} 
+        run: |
+          echo ${{ steps.myRequest.outputs.response }}
+          echo ${{ steps.myRequest.outputs.headers }}
+          echo ${{ fromJson(steps.myRequest.outputs.response).field_you_want_to_access }} 
