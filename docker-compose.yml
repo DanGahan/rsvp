@@ -20,8 +20,8 @@ services:
     depends_on:
       test_backend:
         condition: service_completed_successfully
-    environment:
-      DATABASE_URL: postgresql://postgres:password@db:5432/rsvp_app
+      db:
+        condition: service_healthy
 
   frontend:
     build: 
