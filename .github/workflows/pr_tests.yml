@@ -17,21 +17,40 @@ jobs:
         run: |
           docker-compose up -d
 
-      - name: Verify application is accessible
+      - name: Verify frontend is accessible
         uses: lakuapik/gh-actions-http-status@v1
         with:
           url: http://localhost:8000
           method: GET
           expected: '[301, 200]'
         continue-on-error: true
+ 
+      - name: Verify backend GET is accessible
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          url: http://localhost:5555/rsvps
+          method: GET
+          expected: '[301, 200]'
+        continue-on-error: true
 
-      - name: Check HTTP status code
-        run: |
-          if [ ${{ steps.verify.outputs.status }} == "200" ]; then
-            echo "Application is accessible"
-          else
-            echo "Application is not accessible"
-            exit 1
-          fi
-        env:
-          STATUS_CODE: ${{ steps.verify.outputs.status }}
+      - name: Verify backend GET is accessible
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          url: http://localhost:5555/evening_rsvps
+          method: GET
+          expected: '[301, 200]'
+        continue-on-error: true
+
+      - name: Verify backend POST is accessible
+        uses: fjogeleit/http-request-action@v1.15.2
+        with:
+          url: 'http://localhost:5555/rsvps'
+          method: POST
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"name":"John","attending":"Yes","vegetarian":"Yes","plus_one":"yes","plus_one_name":"Jane","plus_one_vegitarian":"No ","song_suggestion":"Song name"}'
+
+      - name: Show Response
+      run: |
+        echo ${{ steps.myRequest.outputs.response }}
+        echo ${{ steps.myRequest.outputs.headers }}
+        echo ${{ fromJson(steps.myRequest.outputs.response).field_you_want_to_access }} 
