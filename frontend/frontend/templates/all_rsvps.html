@@ -70,6 +70,32 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <br>
+        <h2>Evening RSVPs</h2>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Attending?</th>
+                    <th>Plus One</th>
+                    <th>Plus One Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for evening_rsvp in evening_rsvps_data %}
+                    <tr>
+                        <td>{{ evening_rsvp.id }}</td>
+                        <td>{{ evening_rsvp.name }}</td>
+                        <td>{{ evening_rsvp.attending }}</td>
+                        <td>{{ evening_rsvp.plus_one }}</td>
+                        <td>{{ evening_rsvp.plus_one_name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         
         <hr>
 

@@ -5,17 +5,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 
-def get_all_rsvps(request):
-    api_url = 'http://backend:5000/rsvps'  # Update the URL to match your Flask API endpoint
-    response = requests.get(api_url)
-
-    if response.status_code == 200:
-        rsvps_data = response.json()
-        return render(request, 'all_rsvps.html', {'rsvps_data': rsvps_data})
-    else:
-        # Handle the API error
-        return render(request, 'error_page.html', {'error_message': 'Failed to fetch RSVP data'})
-
+##########################################################
+#Views for frontend pages                                #
+##########################################################
 def header_view(request):
     return render(request, 'header.html')
 
@@ -25,14 +17,9 @@ def footer_view(request):
 def form_view(request):
     return render(request, 'form.html')
 
-def success_page_view(request):
-    rsvp_success = request.session.get('rsvp_success', False)
-    if rsvp_success: 
-            success_message = 'RSVP submitted successfully!'
-            return render(request, 'success.html', {'success_message': success_message})
-    else: 
-        return render(request, 'success.html')
-
+##########################################################
+#POST into backend API for RSVP submission               #
+##########################################################
 def submit_data(request):
     if request.method == 'POST':
         # Extract form data
@@ -77,3 +64,47 @@ def submit_data(request):
             return JsonResponse({'status': 'error', 'message': 'Failed to submit data to backend'}, status=500)
     else:
         return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+
+##########################################################################
+#Set RSVP message on success page if navigated to from RSVP Post         #
+##########################################################################
+def success_page_view(request):
+    rsvp_success = request.session.get('rsvp_success', False)
+    if rsvp_success: 
+            success_message = 'RSVP submitted successfully!'
+            return render(request, 'success.html', {'success_message': success_message})
+    else: 
+        return render(request, 'success.html')
+
+##########################################################
+#GET into backend API to retrieve all rsvps              #
+##########################################################
+def get_all_rsvps(request):
+    all_rsvps_url = 'http://backend:5000/rsvps'  # Update the URL to match your Flask API endpoint
+    all_evening_rsvps_url = 'http://backend:5000/evening_rsvps'
+    
+    all_rsvps_response = requests.get(all_rsvps_url)
+    all_evening_rsvps_response = requests.get(all_evening_rsvps_url)
+    
+    if all_rsvps_response.status_code == 200 and all_evening_rsvps_response.status_code == 200:
+        rsvps_data = all_rsvps_response.json()
+        evening_rsvps_data = all_evening_rsvps_response.json() 
+        
+        return render(request, 'all_rsvps.html', {'rsvps_data': rsvps_data, 'evening_rsvps_data': evening_rsvps_data})
+    else:
+        # Handle the API error
+        return render(request, 'error_page.html', {'error_message': 'Failed to fetch RSVP data'})
+
+#########################################################
+#GET into backend API to retrieve all rsvps              #
+##########################################################
+def get_all_evening_rsvps(request):
+    api_url = 'http://backend:5000/evening_rsvps'  # Update the URL to match your Flask API endpoint
+    response = requests.get(api_url)
+
+    if response.status_code == 200:
+        evening_rsvps_data = response.json()
+        return render(request, 'all_rsvps.html', {'evening_rsvps_data': evening_rsvps_data})
+    else:
+        # Handle the API error
+        return render(request, 'error_page.html', {'error_message': 'Failed to fetch evening RSVP data'})
