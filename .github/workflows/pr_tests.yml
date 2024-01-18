@@ -18,10 +18,11 @@ jobs:
           docker-compose up -d
 
       - name: Verify application is accessible
-        uses: actions/http@v1
+        uses: lakuapik/gh-actions-http-status@v1
         with:
-          url: http://localhost:8080
+          url: http://localhost:8000
           method: GET
+          expected: '[301, 200]'
         continue-on-error: true
 
       - name: Check HTTP status code
