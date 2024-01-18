@@ -96,4 +96,4 @@ def get_all_evening_rsvps():
 if __name__ == '__main__':
     
     db.create_all()  # Create the database tables
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=false, host='0.0.0.0')
