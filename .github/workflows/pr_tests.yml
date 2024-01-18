@@ -18,9 +18,9 @@ jobs:
           docker-compose up -d
 
       - name: Verify application is accessible
-        uses: peter-evans/http-request@v1
+        uses: actions/http@v1
         with:
-          url: http://localhost:8000
+          url: http://localhost:8080
           method: GET
         continue-on-error: true
 
