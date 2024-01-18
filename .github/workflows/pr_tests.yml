@@ -14,22 +14,23 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Start containers
-        uses: docker/compose-action@v1
-        with:
-          compose-file: docker-compose.yml
+        run: |
+          docker-compose up -d
 
       - name: Verify application is accessible
+        uses: peter-evans/http-request@v1
+        with:
+          url: http://localhost:8000
+          method: GET
+        continue-on-error: true
+
+      - name: Check HTTP status code
         run: |
-          curl http://localhost:8000
-          if [ $(curl -I http://localhost:8000 | grep HTTP/1.1 | awk {'print $2'}) == "200" ]; then
+          if [ ${{ steps.verify.outputs.status }} == "200" ]; then
             echo "Application is accessible"
           else
             echo "Application is not accessible"
             exit 1
           fi
-
-      - name: Check HTTP status code
-        uses: dorny/http-echo@v2
-        with:
-          url: http://localhost:8080
-          status_code: 200
+        env:
+          STATUS_CODE: ${{ steps.verify.outputs.status }}
