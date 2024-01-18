@@ -71,7 +71,7 @@ def submit_data(request):
 ##########################################################
 #POST into backend API for Evening RSVP submission       #
 ##########################################################
-def submit_data(request):
+def evening_rsvp_submit_data(request):
     if request.method == 'POST':
         # Extract form data
         name = request.POST.get('name')
