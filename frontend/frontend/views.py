@@ -17,6 +17,9 @@ def footer_view(request):
 def form_view(request):
     return render(request, 'form.html')
 
+def evening_view(request):
+    return render(request, 'evening.html')
+
 ##########################################################
 #POST into backend API for RSVP submission               #
 ##########################################################
@@ -65,6 +68,48 @@ def submit_data(request):
     else:
         return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
 
+##########################################################
+#POST into backend API for Evening RSVP submission       #
+##########################################################
+def submit_data(request):
+    if request.method == 'POST':
+        # Extract form data
+        name = request.POST.get('name')
+        attending = request.POST.get('attending')
+        plus_one = request.POST.get('plus_one')
+        plus_one_name = request.POST.get('plus_one_name')
+
+        # Prepare data for API call
+        data = {
+            'name': name,
+            'attending': attending,
+            'plus_one': plus_one,
+            'plus_one_name': plus_one_name,
+        }
+
+        headers = {
+            'Content-Type': 'application/json',
+        }
+
+        # Make API call to backend
+        api_url = 'http://backend:5000/evening_rsvp'
+        
+        response = requests.post(api_url, headers=headers, data=json.dumps(data))
+
+        # Check if API call was successful
+        if response.status_code == 201:
+            # Process the API response if needed
+            #api_response = response.json()
+            # ...
+            #return JsonResponse({'status': 'success', 'message': 'Data submitted successfully'})
+                    # Redirect to the success page with a success parameter
+           request.session['rsvp_success'] = True
+           return redirect('success_page')
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Failed to submit data to backend'}, status=500)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+
 ##########################################################################
 #Set RSVP message on success page if navigated to from RSVP Post         #
 ##########################################################################
@@ -94,17 +139,3 @@ def get_all_rsvps(request):
     else:
         # Handle the API error
         return render(request, 'error_page.html', {'error_message': 'Failed to fetch RSVP data'})
-
-#########################################################
-#GET into backend API to retrieve all rsvps              #
-##########################################################
-def get_all_evening_rsvps(request):
-    api_url = 'http://backend:5000/evening_rsvps'  # Update the URL to match your Flask API endpoint
-    response = requests.get(api_url)
-
-    if response.status_code == 200:
-        evening_rsvps_data = response.json()
-        return render(request, 'all_rsvps.html', {'evening_rsvps_data': evening_rsvps_data})
-    else:
-        # Handle the API error
-        return render(request, 'error_page.html', {'error_message': 'Failed to fetch evening RSVP data'})

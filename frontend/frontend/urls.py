@@ -12,6 +12,7 @@ urlpatterns = [
     path('all_rsvps/', views.get_all_rsvps, name='get_all_rsvps'),
     path('header/', views.header_view, name='header_view'), 
     path('footer/', views.footer_view, name='footer_view'),
+    path('evening/', views.evening_view, name='evening_view'),
 ]
 
 # Add the static files serving configuration
