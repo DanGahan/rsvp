@@ -1,0 +1,35 @@
+name: Pull Request Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Start containers
+        uses: docker/compose-action@v1
+        with:
+          compose-file: docker-compose.yml
+
+      - name: Verify application is accessible
+        run: |
+          curl http://localhost:8000
+          if [ $(curl -I http://localhost:8000 | grep HTTP/1.1 | awk {'print $2'}) == "200" ]; then
+            echo "Application is accessible"
+          else
+            echo "Application is not accessible"
+            exit 1
+          fi
+
+      - name: Check HTTP status code
+        uses: dorny/http-echo@v2
+        with:
+          url: http://localhost:8080
+          status_code: 200
