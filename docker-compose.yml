@@ -18,8 +18,6 @@ services:
     ports:
       - "5555:5000"
     depends_on:
-      test_backend:
-        condition: service_completed_successfully
       db:
         condition: service_healthy
     environment:
@@ -29,8 +27,5 @@ services:
     build: 
       context: ./frontend
       target: production
-    depends_on:
-      test_frontend:
-        condition: service_completed_successfully
     ports:
       - "8000:8000"
