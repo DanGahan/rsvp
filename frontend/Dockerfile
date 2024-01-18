@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11 AS builder
+FROM python:3.12 AS builder
 
 # Set environment variables
 ENV PYTHONUNBUFFERED 1
