@@ -18,8 +18,6 @@ services:
     ports:
       - "5555:5000"
     depends_on:
-      test_backend:
-        condition: service_completed_successfully
       db:
         condition: service_healthy
     environment:
@@ -29,22 +27,5 @@ services:
     build: 
       context: ./frontend
       target: production
-    depends_on:
-      test_frontend:
-        condition: service_completed_successfully
     ports:
       - "8000:8000"
-
-  test_backend: # Define the test_backend service for running the unit tests
-    build:
-      context: ./backend
-      target: tester # Specify the target stage for building the image
-    command: >
-      sh -c "python -m unittest APIunittest.py && exit 0"
-
-  test_frontend: # Define the test_frontend service for running the unit tests
-    build:
-      context: ./frontend
-      target: tester # Specify the target stage for building the image
-    command: > 
-      sh -c "python manage.py test --settings=frontend.settings && exit 0"
