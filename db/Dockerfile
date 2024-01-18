@@ -1,5 +1,5 @@
 # Use the official PostgreSQL image as a parent image
-FROM postgres:13
+FROM postgres:16.1
 
 # Set environment variables for PostgreSQL
 ENV POSTGRES_DB=rsvp_app
