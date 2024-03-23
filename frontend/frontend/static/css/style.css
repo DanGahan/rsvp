@@ -18,6 +18,8 @@ body {
 	height: 100%;
 	font-family: "Arimo", sans-serif;
 	-webkit-font-smoothing: antialiased;
+	margin: 0;
+    padding: 0;
 }
 
 h1,
@@ -1194,3 +1196,43 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 	margin-bottom: 50px;
 }
 
+/* Add this CSS code to your stylesheet */
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	margin: 0; /* Remove any unwanted margins */
+    padding: 20; /* Remove any unwanted padding */
+}
+
+.form-container form {
+    border: 1px solid #ccc;
+    padding: 10px;
+	width: 60%;
+    margin: 0 auto;
+}
+
+
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px; /* Adjust as needed for spacing */
+}
+
+.form-container form input,
+.form-container form select {
+    margin: 0; /* Reset margin to remove any unwanted spacing */
+    padding: 5px; /* Add padding as needed */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.form-group label,
+.form-group select {
+    margin: 0 0 0 0; /* Adjust as needed for spacing */
+}
+
+.form-control {
+    width: 100%; /* Set the width to 100% to match the width of the text boxes */
+}
