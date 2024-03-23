@@ -20,6 +20,8 @@ body {
 	-webkit-font-smoothing: antialiased;
 	margin: 0;
     padding: 0;
+	background-color: #BD7956;
+	
 }
 
 h1,
@@ -30,25 +32,28 @@ h5,
 h6 {
 	margin: 0;
 	color: #222222;
-	font-family: "Arimo", sans-serif;
+	font-family: "Amatic SC", sans-serif;
 	font-weight: 700;
 }
 
 h1 {
-	font-size: 70px;
+	font-size: 15em;
+	text-align: left;
 }
 
 h2 {
-	font-size: 36px;
+	font-size: 5em;
 	line-height: 1.4;
+	text-align: left;
 }
 
 h3 {
-	font-size: 30px;
+	font-size: 4em;
+	text-align: left;
 }
 
 h4 {
-	font-size: 24px;
+	font-size: 3em;
 }
 
 h5 {
@@ -61,7 +66,7 @@ h6 {
 
 p {
 	font-size: 16px;
-	color: #7E858B;
+	color: #000000;
 	line-height: 1.8;
 }
 
@@ -76,10 +81,13 @@ textarea:focus {
 	outline: none;
 }
 
+
+a,
 a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
+	color: #283618
 }
 
 ul,
@@ -859,7 +867,7 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 }
 
 .blog__content h4 {
-	font-size: 22px;
+	font-size: 3em;
 }
 
 .blog__content h4 a {
@@ -920,12 +928,12 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 }
 
 .blog__container h4 {
-	font-size: 22px;
+	font-size: 2em;
 	margin-bottom: 20px;
 }
 
 .blog__header {
-	text-align: center;
+	text-align: left;
 }
 
 .blog__cata {
@@ -935,8 +943,9 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 	padding: 4px 13px;
 	border-radius: 2px;
 	color: #fff;
-	background: #8DB952;
+	background: #BD7956;
 	margin-bottom: 20px;
+	text-align: left;
 }
 
 .blog__single__title {
@@ -956,7 +965,7 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 	margin-bottom: 5px;
 	padding-right: 20px;
 	font-size: 14px;
-	color: #7E858B;
+	color: #000000;
 }
 
 .blog__metas .blog__meta:after {
@@ -965,7 +974,7 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 	font-size: 14px;
 	right: 0;
 	top: 0;
-	color: #7E858B;
+	color: #000000;
 }
 
 .blog__metas .blog__meta:last-child {
@@ -1207,10 +1216,11 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 }
 
 .form-container form {
-    border: 1px solid #ccc;
+    border: 3px solid #283618;
     padding: 10px;
 	width: 50%;
     margin: 0 auto;
+	background-color: #FEFAE0;
 }
 
 
@@ -1236,3 +1246,21 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 .form-control {
     width: 100%; /* Set the width to 100% to match the width of the text boxes */
 }
+
+.amatic-sc-regular {
+	font-family: "Amatic SC", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+  }
+  
+  .amatic-sc-bold {
+	font-family: "Amatic SC", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+  }
+
+	.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+		background-color: #283618 !important;
+		border-color:  #283618 !important;
+	}
+
