@@ -1209,7 +1209,7 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 .form-container form {
     border: 1px solid #ccc;
     padding: 10px;
-	width: 60%;
+	width: 50%;
     margin: 0 auto;
 }
 

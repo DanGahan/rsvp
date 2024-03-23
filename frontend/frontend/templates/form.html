@@ -22,12 +22,12 @@
         <form class="form-horizontal" id="submitForm" method="post" action="{% url 'submit_data' %}">
           <h4>Please RSVP using the form below:</h4> 
   <div class="row mb-3">
-    <div class="col-sm-10">
+    <div class="col-sm-12">
       <input class="form-control" text" id="name" name="name" placeholder="Name" required >
     </div>
   </div>
   <div class="row mb-3">
-    <div class="col-sm-10">
+    <div class="col-sm-12">
         <select class="form-control" id="attending" name="attending" required >
           <option value="No">No, unfortunately I will not be attending</option>
           <option value ="Yes">Yes, I will be attending</option>
@@ -35,7 +35,7 @@
      </div>
   </div>
   <div class="row mb-3">
-    <div class="col-sm-10">
+    <div class="col-sm-12">
       <select class="form-control" id="plus_one" name="plus_one" required width="50" >
         <option value="No">No, I will not be bringing a plus one</option>
         <option value ="Yes">Yes, I will be bringing a plus one</option>
@@ -43,13 +43,12 @@
       </div>
     </div>
   <div class="row mb-3">
-    <div class="col-sm-10">
+    <div class="col-sm-12">
         <input type="text" id="plus_one_name" name="plus_one_name" placeholder="Plus One's Name" class="form-control" required disabled>
      </div> 
   </div>
-  Please let us know if you require a vegetarian meal.
   <div class="row mb-3">
-      <div class="col-sm-10">
+      <div class="col-sm-12">Please let us know if you require a vegetarian meal.
           <select class="form-control" id="vegetarian" name="vegetarian" required>
             <option value="No">No, I do not require a vegetarian option</option>
             <option value ="Yes">Yes, I require a vegetarian option</option>
@@ -57,16 +56,16 @@
       </div>
     </div>
   <div class="row mb-3">
-      <div class="col-sm-10">
+      <div class="col-sm-12">
         <select class="form-control" id="plus_one_vegetarian" name="plus_one_vegetarian" required>
           <option value="No">No, my plus one does not require a vegitarian option</option>
           <option value ="Yes">Yes, my plus one does require a vegetarian option</option>
         </select> 
       </div>
     </div>
-    Please suggest a song you'd like to hear the DJ play
     <div class="row mb-3">
-    <div class="col-sm-10">
+    <div class="col-sm-12">
+      Please suggest a song you'd like to hear the DJ play
       <input type="text" id="song_suggestion" name="song_suggestion" placeholder="Artist and Song" class="form-control" required>
     </div>
   </div>
