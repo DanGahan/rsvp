@@ -28,4 +28,4 @@ services:
       context: ./frontend
       target: production
     ports:
-      - "8000:8000"
+      - "80:80"
