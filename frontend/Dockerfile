@@ -28,8 +28,8 @@ CMD ["python", "manage.py", "test", "--settings=frontend.settings"]
 FROM builder AS production
 
 # Set the command to run the application using Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "frontend.wsgi:application", "--workers", "3", "--timeout", "15"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "frontend.wsgi:application", "--workers", "3", "--timeout", "15"]
 
 # Expose port 8000
-EXPOSE 8000
+EXPOSE 80
 
