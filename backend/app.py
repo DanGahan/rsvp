@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 from urllib.parse import quote as url_quote
 import logging
 import os
@@ -93,6 +94,13 @@ def get_all_evening_rsvps():
       all_evening_rsvps = evening_rsvps.query.all()
       evening_rsvps_list = [{'id': evening_rsvp.id, 'name': evening_rsvp.name, 'attending': evening_rsvp.attending, 'plus_one': evening_rsvp.plus_one, 'plus_one_name': evening_rsvp.plus_one_name} for evening_rsvp in all_evening_rsvps]
       return jsonify(evening_rsvps_list)
+
+@app.route('/rsvp_count', methods=['GET'])
+def get_rsvp_count():
+    # Explicitly declare the SQL query as text
+    query = text("SELECT (SELECT count(attending) FROM rsvps WHERE attending = 'Yes') + (SELECT count(plus_one) FROM rsvps WHERE plus_one = 'Yes') AS total_count")
+    count = db.session.execute(query).scalar()
+    return jsonify({'count': count})
 
 if __name__ == '__main__':
     
