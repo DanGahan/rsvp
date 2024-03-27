@@ -127,15 +127,19 @@ def success_page_view(request):
 def get_all_rsvps(request):
     all_rsvps_url = 'http://backend:5000/rsvps'  # Update the URL to match your Flask API endpoint
     all_evening_rsvps_url = 'http://backend:5000/evening_rsvps'
+    rsvp_count_url = 'http://backend:5000/rsvp_count' 
     
     all_rsvps_response = requests.get(all_rsvps_url)
     all_evening_rsvps_response = requests.get(all_evening_rsvps_url)
+    rsvp_count_response = requests.get(rsvp_count_url)
     
-    if all_rsvps_response.status_code == 200 and all_evening_rsvps_response.status_code == 200:
+    if all_rsvps_response.status_code == 200 and all_evening_rsvps_response.status_code == 200 and rsvp_count_response.status_code == 200:
         rsvps_data = all_rsvps_response.json()
         evening_rsvps_data = all_evening_rsvps_response.json() 
-        
-        return render(request, 'all_rsvps.html', {'rsvps_data': rsvps_data, 'evening_rsvps_data': evening_rsvps_data})
+        rsvp_count = rsvp_count_response.json()['count']
+
+        return render(request, 'all_rsvps.html', {'rsvps_data': rsvps_data, 'evening_rsvps_data': evening_rsvps_data, 'rsvp_count': rsvp_count})
     else:
         # Handle the API error
         return render(request, 'error_page.html', {'error_message': 'Failed to fetch RSVP data'})
+    
