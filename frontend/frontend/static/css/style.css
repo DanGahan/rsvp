@@ -16,7 +16,10 @@
 html,
 body {
 	height: 100%;
-	font-family: "Arimo", sans-serif;
+	color: #222222;
+	font-family: "Amatic SC", sans-serif;
+	font-weight: 700;
+	font--size: 1.5em;
 	-webkit-font-smoothing: antialiased;
 	margin: 0;
     padding: 0;
@@ -65,7 +68,7 @@ h6 {
 }
 
 p {
-	font-size: 16px;
+	font-size: 5em;
 	color: #000000;
 	line-height: 1.8;
 }
@@ -1218,7 +1221,7 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 .form-container form {
     border: 3px solid #283618;
     padding: 10px;
-	width: 50%;
+	width: 90%;
     margin: 0 auto;
 	background-color: #FEFAE0;
 }
@@ -1245,6 +1248,8 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 
 .form-control {
     width: 100%; /* Set the width to 100% to match the width of the text boxes */
+	font-size: 1.5em;
+	font-weight: 700;
 }
 
 .amatic-sc-regular {
