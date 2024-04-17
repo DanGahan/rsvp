@@ -66,7 +66,6 @@ $(window).on('load', function() {
 		slidesToShow: 1,
 		centerMode: true,
 		variableWidth: true,
-		centerMode: true,
 		arrows: false,
 		asNavFor: '.hero-text-slider',
 		autoplay: true,
