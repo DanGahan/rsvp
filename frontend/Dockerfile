@@ -14,6 +14,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the content of the local directory to the working directory in the container
 COPY . /app/
 
+# Set up the entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+
 # Run collectstatic command against the frontend directory
 # RUN python manage.py collectstatic --no-input --clear --settings=frontend.settings
 
