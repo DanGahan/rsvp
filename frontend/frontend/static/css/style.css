@@ -637,6 +637,11 @@ ol {
    Footer section
  -----------------------*/
 
+ .footer {
+	font-size: 18px;;
+	text-align: center;
+  }
+
 .footer__copyright__text {
 	text-align: center;
 	padding-bottom: 5px;
