@@ -23,7 +23,7 @@ $(window).on('load', function() {
 		Background Set
 	--------------------*/
 	$('.set-bg').each(function() {
-		var bg = $(this).data('setbg');
+		let bg = $(this).data('setbg');
 		$(this).css('background-image', 'url(' + bg + ')');
 	});
 
@@ -82,7 +82,7 @@ $(window).on('load', function() {
 		]
 	});
 	
-	var hero_slider = $('.hero-slider');
+	let hero_slider = $('.hero-slider');
 
 	hero_slider.on('wheel', (function(e) {
 		e.preventDefault();
@@ -95,7 +95,7 @@ $(window).on('load', function() {
 
 	hero_slider.on('click', '.slick-slide', function (e) {
 		e.preventDefault();
-		var index = $(this).data("slick-index");
+		let index = $(this).data("slick-index");
 		if ($('.slick-slider').slick('slickCurrentSlide') !== index) {
 			$('.slick-slider').slick('slickGoTo', index);
 		}
@@ -147,8 +147,8 @@ $(window).on('load', function() {
 		Progress Bars
 	-------------------*/
 	$('.progress-bar-style').each(function() {
-		var progress = $(this).data("progress");
-		var prog_width = progress + '%';
+		let progress = $(this).data("progress");
+		let prog_width = progress + '%';
 		if (progress <= 100) {
 			$(this).append('<div class="bar-inner" style="width:' + prog_width + '"></div>');
 		}
