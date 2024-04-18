@@ -33,7 +33,7 @@ jobs:
       # Step 4: Generate coverage reports
       - name: Generate coverage reports
         run: |
-          rm ./backend/coverage.xml
+          rm coverage.xml
           export DATABASE_URL=sqlite:///:memory:
           coverage run -m unittest APIunittest.py
           coverage xml -o coverage.xml
