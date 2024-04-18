@@ -1,97 +1,40 @@
 name: Build
 on:
+  workflow_run:
+    workflows: ["First Workflow", "Second Workflow"]
+    types:
+      - completed
   push:
-    branches: 
-      - '*'
-  pull_request:
-    branches: 
-      - '*'
-    types: [opened, synchronize, reopened]
+    branches:
+      - master
 jobs:
-  generate_and_checkin_backend_coverage:
-    name: Generate and Check-in Backend Coverage
+  sonarcloud_front:
+    name: SonarCloud Front
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main'
-
     steps:
-      # Step 1: Checkout the code
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-
-      # Step 2: Set up Python
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
-
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-        working-directory: ./backend
-
-      # Step 4: Generate coverage reports
-      - name: Generate coverage reports
-        run: |
-          rm coverage.xml
-          export DATABASE_URL=sqlite:///:memory:
-          coverage run -m unittest APIunittest.py
-          coverage report
-          coverage xml -o coverage.xml
-        working-directory: ./backend
-
-      # Step 2: Set up Python
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-         python-version: 3.x
-         
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-        working-directory: ./frontend
-
-
-        
-      # Step 4: Generate coverage reports
-      - name: Generate coverage reports
-        run: |
-          touch coverage.xml
-          rm coverage.xml
-          export DJANGO_SECRET_KEY=$(openssl rand -base64 32)
-          coverage run manage.py test
-          coverage report
-          coverage xml -o coverage.xml
-        working-directory: ./frontend
-          
-      # Step 5: Commit coverage report
-      - name: Commit coverage report
-        run: |
-          pwd
-          ls
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git pull origin $(git branch | grep \* | cut -d ' ' -f2)
-          git add ./backend/coverage.xml
-          git add ./frontend/coverage.xml
-          git commit -m "Generated coverage reports"
-          git push origin $(git branch | grep \* | cut -d ' ' -f2)
-
-      - name: SonarCloud FrontendScan
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
         with:
           projectBaseDir: frontend/
-
-      - name: SonarCloud Backend Scan
+  
+  sonarcloud_back:
+    name: SonarCloud Back
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACK }}
         with:
-          projectBaseDir: backend/ 
-
-      
+          projectBaseDir: backend/
+  
