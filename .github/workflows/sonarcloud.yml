@@ -30,9 +30,8 @@ jobs:
 
       # Step 4: Generate coverage reports
       - name: Generate coverage reports
-        env:
-          DATABASE_URL: sqlite:///:memory:
         run: |
+          export DATABASE_URL=sqlite:///:memory:
           coverage run -m unittest APIunittest.py
           coverage xml -o coverage.xml
         working-directory: ./backend
