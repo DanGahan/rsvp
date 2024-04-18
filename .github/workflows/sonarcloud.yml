@@ -1,7 +1,7 @@
 name: Build
 on:
   workflow_run:
-    workflows: ["First Workflow", "Second Workflow"]
+    workflows: ["Coverage"]
     types:
       - completed
   push:
