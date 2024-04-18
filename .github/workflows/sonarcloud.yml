@@ -45,7 +45,6 @@ jobs:
           git pull $(git branch | grep \* | cut -d ' ' -f2)
           git add backend
           git commit -m "Add backend coverage report"
-        working-directory: ./
         
       # Step 6: Push changes to the repository
       - name: Push changes
