@@ -37,6 +37,7 @@ jobs:
           rm coverage.xml
           export DATABASE_URL=sqlite:///:memory:
           coverage run -m unittest APIunittest.py
+          coverage report
           coverage xml -o coverage.xml
         working-directory: ./backend
 
@@ -82,7 +83,8 @@ jobs:
           touch coverage.xml
           rm coverage.xml
           export DJANGO_SECRET_KEY=$(openssl rand -base64 32)
-          python manage.py test frontend
+          coverage run manage.py test
+          coverage report
           coverage xml -o coverage.xml
         working-directory: ./frontend
           
@@ -97,12 +99,6 @@ jobs:
           git add ./frontend/coverage.xml
           git commit -m "Generated frontend coverage report"
           git push origin $(git branch | grep \* | cut -d ' ' -f2)
-                  
-      # Step 6: Push changes to the repository
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
             
 
   sonarcloud:
