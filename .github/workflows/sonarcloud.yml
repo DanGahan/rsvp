@@ -1,12 +1,13 @@
-name: Build
+name: Coverage
 on:
-  workflow_run:
-    workflows: ["Coverage"]
-    types:
-      - completed
   push:
-    branches:
-      - master
+    branches: 
+      - '*'
+  pull_request:
+    branches: 
+      - '*'
+    types: [opened, synchronize, reopened]
+
 jobs:
   sonarcloud_front:
     name: SonarCloud Front
