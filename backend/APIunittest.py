@@ -18,25 +18,34 @@ class APITestCase(TestCase):
         db.drop_all()
 
     def test_create_rsvp(self):
-        rsvp_data = {
+        rsvp_data_john = {
             'name': 'John Doe',
             'attending': 'Yes',
             'vegetarian': 'No',
             'plus_one': 'Yes',
             'plus_one_name': 'Jane Doe',
             'plus_one_vegetarian': 'Yes',
+            'song_suggestion': 'Song 1'
+        }
+
+        rsvp_data_jane = {
+            'name': 'Jane Doe',
+            'attending': 'No',
+            'vegetarian': 'Yes',
+            'plus_one': 'Yes',
+            'plus_one_name': '',
+            'plus_one_vegetarian': 'Song 2',
             'song_suggestion': 'Some song suggestion'
         }
 
-        response = self.client.post('/rsvp', json=rsvp_data)
+
+        response = self.client.post('/rsvp', json=rsvp_data_john)
         self.assertStatus(response, 201)
         self.assertEqual(response.json, {'message': 'RSVP created successfully'})
 
     def test_get_all_rsvps(self):
-        rsvp1 = rsvps(name='John Doe', attending='Yes', vegetarian='No', plus_one='Yes',
-                      plus_one_name='Jane Doe', plus_one_vegetarian='Yes', song_suggestion='Song 1')
-        rsvp2 = rsvps(name='Jane Doe', attending='No', vegetarian='Yes', plus_one='No',
-                      plus_one_name='', plus_one_vegetarian='No', song_suggestion='Song 2')
+        rsvp1 = rsvps(**rsvp_data_john)
+        rsvp2 = rsvps(**rsvp_data_jane)
         db.session.add_all([rsvp1, rsvp2])
         db.session.commit()
 

@@ -1,11 +1,11 @@
 $(document).ready(function() {
     // Initialize the form elements
-    var attendingSelect = $("#attending");
-    var vegetarianSelect = $("#vegetarian");
-    var plusOneSelect = $("#plus_one");
-    var plusOneNameInput = $("#plus_one_name");
-    var plusOneVegetarianSelect = $("#plus_one_vegetarian");
-    var songSuggestionInput = $("#song_suggestion");
+    let attendingSelect = $("#attending");
+    let vegetarianSelect = $("#vegetarian");
+    let plusOneSelect = $("#plus_one");
+    let plusOneNameInput = $("#plus_one_name");
+    let plusOneVegetarianSelect = $("#plus_one_vegetarian");
+    let songSuggestionInput = $("#song_suggestion");
   
     // Disable initial form elements
     vegetarianSelect.prop("disabled", true).addClass("disabled");
@@ -16,7 +16,7 @@ $(document).ready(function() {
   
     // Enable or disable form elements based on the selected values
     attendingSelect.on("change", function() {
-      var attendingValue = attendingSelect.val();
+      let attendingValue = attendingSelect.val();
   
       if (attendingValue === "Yes") {
         vegetarianSelect.prop("disabled", false).removeClass("disabled");
