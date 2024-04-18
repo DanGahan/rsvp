@@ -48,7 +48,7 @@ jobs:
           git pull origin main
           git add ./backend/coverage.xml
           git commit -m "Generated backend coverage report"
-          git push
+          git push origin $(git branch | grep \* | cut -d ' ' -f2)
         
       # Step 6: Push changes to the repository
       - name: Push changes
