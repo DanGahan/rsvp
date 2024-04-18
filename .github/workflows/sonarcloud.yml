@@ -43,13 +43,12 @@ jobs:
         run: |
           pwd
           ls
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git config pull.rebase false
-          git pull $(git branch | grep \* | cut -d ' ' -f2)
-          git add backend
-          git commit -m "Add backend coverage report"
+          git pull origin main
+          git add ./backend/coverage.xml
+          git commit -m "Generated backend coverage report"
+          git push
         
       # Step 6: Push changes to the repository
       - name: Push changes
