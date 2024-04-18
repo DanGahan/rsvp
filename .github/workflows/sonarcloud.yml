@@ -95,7 +95,7 @@ jobs:
           ls
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git pull origin $(git branch | grep \* | cut -d ' ' -f2
+          git pull origin $(git branch | grep \* | cut -d ' ' -f2)
           git add ./frontend/coverage.xml
           git commit -m "Generated frontend coverage report"
           git push origin $(git branch | grep \* | cut -d ' ' -f2)
