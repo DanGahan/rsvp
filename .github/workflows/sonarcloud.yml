@@ -8,6 +8,48 @@ on:
       - '*'
     types: [opened, synchronize, reopened]
 jobs:
+  generate_and_checkin_coverage:
+    name: Generate and Check-in Coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        working-directory: ./backend
+
+      # Step 4: Generate coverage reports
+      - name: Generate coverage reports
+        run: |
+          coverage run -m unittest APIunittest.py
+          coverage xml -o coverage.xml
+        working-directory: ./backend
+
+      # Step 5: Commit coverage report
+      - name: Commit coverage report
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add coverage.xml
+          git commit -m "Add coverage report"
+        working-directory: ./
+        
+      # Step 6: Push changes to the repository
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
