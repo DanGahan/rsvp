@@ -41,42 +41,19 @@ jobs:
           coverage xml -o coverage.xml
         working-directory: ./backend
 
-      # Step 5: Commit coverage report
-      - name: Commit coverage report
-        run: |
-          pwd
-          ls
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git pull origin $(git branch | grep \* | cut -d ' ' -f2)
-          git add ./backend/coverage.xml
-          git commit -m "Generated backend coverage report"
-          git push origin $(git branch | grep \* | cut -d ' ' -f2)
-        
-
-  generate_and_checkin_frontend_coverage:
-    name: Generate and Check-in Front End Coverage
-    runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main'
-        
-    steps:
-      # Step 1: Checkout the code
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          
-    # Step 2: Set up Python
+      # Step 2: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.x
-          
+         python-version: 3.x
+         
       # Step 3: Install dependencies
       - name: Install dependencies
         run: pip install -r requirements.txt
         working-directory: ./frontend
-          
+
+
+        
       # Step 4: Generate coverage reports
       - name: Generate coverage reports
         run: |
@@ -96,8 +73,9 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git pull origin $(git branch | grep \* | cut -d ' ' -f2)
+          git add ./backend/coverage.xml
           git add ./frontend/coverage.xml
-          git commit -m "Generated frontend coverage report"
+          git commit -m "Generated coverage reports"
           git push origin $(git branch | grep \* | cut -d ' ' -f2)
             
 
