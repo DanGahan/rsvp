@@ -11,6 +11,7 @@ jobs:
   generate_and_checkin_coverage:
     name: Generate and Check-in Coverage
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
 
     steps:
       # Step 1: Checkout the code
