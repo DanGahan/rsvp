@@ -8,8 +8,8 @@ on:
       - '*'
     types: [opened, synchronize, reopened]
 jobs:
-  generate_and_checkin_coverage:
-    name: Generate and Check-in Coverage
+  generate_and_checkin_backend_coverage:
+    name: Generate and Check-in Backend Coverage
     runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/main'
 
@@ -37,9 +37,34 @@ jobs:
           rm coverage.xml
           export DATABASE_URL=sqlite:///:memory:
           coverage run -m unittest APIunittest.py
+          coverage report
           coverage xml -o coverage.xml
         working-directory: ./backend
 
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+         python-version: 3.x
+         
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        working-directory: ./frontend
+
+
+        
+      # Step 4: Generate coverage reports
+      - name: Generate coverage reports
+        run: |
+          touch coverage.xml
+          rm coverage.xml
+          export DJANGO_SECRET_KEY=$(openssl rand -base64 32)
+          coverage run manage.py test
+          coverage report
+          coverage xml -o coverage.xml
+        working-directory: ./frontend
+          
       # Step 5: Commit coverage report
       - name: Commit coverage report
         run: |
@@ -47,16 +72,12 @@ jobs:
           ls
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git pull origin main
+          git pull origin $(git branch | grep \* | cut -d ' ' -f2)
           git add ./backend/coverage.xml
-          git commit -m "Generated backend coverage report"
+          git add ./frontend/coverage.xml
+          git commit -m "Generated coverage reports"
           git push origin $(git branch | grep \* | cut -d ' ' -f2)
-        
-      # Step 6: Push changes to the repository
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+            
 
   sonarcloud:
     name: SonarCloud
