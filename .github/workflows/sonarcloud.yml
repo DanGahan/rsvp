@@ -42,8 +42,8 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add coverage.xml
-          git commit -m "Add coverage report"
-        working-directory: ./
+          git commit -m "Add backend coverage report"
+        working-directory: ./backend
         
       # Step 6: Push changes to the repository
       - name: Push changes
