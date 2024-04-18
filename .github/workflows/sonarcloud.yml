@@ -47,16 +47,11 @@ jobs:
           ls
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git pull origin $(git branch | grep \* | cut -d ' ' -f2
+          git pull origin $(git branch | grep \* | cut -d ' ' -f2)
           git add ./backend/coverage.xml
           git commit -m "Generated backend coverage report"
           git push origin $(git branch | grep \* | cut -d ' ' -f2)
         
-      # Step 6: Push changes to the repository
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   generate_and_checkin_frontend_coverage:
     name: Generate and Check-in Front End Coverage
@@ -89,7 +84,7 @@ jobs:
           export DJANGO_SECRET_KEY=$(openssl rand -base64 32)
           python manage.py test frontend
           coverage xml -o coverage.xml
-          working-directory: ./frontend
+        working-directory: ./frontend
           
       # Step 5: Commit coverage report
       - name: Commit coverage report
