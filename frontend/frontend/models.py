@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class rsvps(db.Model):
+class rsvps(models.Model):
     # ... (your existing model fields)
 
     @staticmethod

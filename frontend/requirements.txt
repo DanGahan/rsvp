@@ -1,4 +1,4 @@
 Django==5.0.4
 gunicorn==22.0.0
 requests==2.31.0
-
+coverage
