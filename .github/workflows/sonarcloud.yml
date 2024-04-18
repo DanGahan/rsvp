@@ -15,7 +15,9 @@ jobs:
     steps:
       # Step 1: Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # Step 2: Set up Python
       - name: Set up Python
@@ -41,6 +43,7 @@ jobs:
         run: |
           pwd
           ls
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git config pull.rebase false
