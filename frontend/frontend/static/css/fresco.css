@@ -18,17 +18,7 @@
     Arial, sans-serif;
   /* Chrome hack, this fixes a visual glitch when quickly toggling a video */
   transform: translateZ(0px);
-}
-
-/* z-index */
-.fr-overlay {
-  z-index: 99998;
-}
-.fr-window {
   z-index: 99999;
-}
-.fr-spinner {
-  z-index: 100000;
 }
 
 /* overlay */
@@ -38,6 +28,7 @@
   left: 0;
   height: 100%;
   width: 100%;
+  z-index: 99998;
 }
 .fr-overlay-background {
   float: left;
@@ -768,7 +759,6 @@
 
 .fr-thumbnails-side-button-icon {
   position: absolute;
-  /*top: -7px;
   left: -7px;*/
   top: 0;
   left: 0;
@@ -892,10 +882,8 @@
   all and (orientation: landscape) and (max-height: 414px) {
   .fr-page {
     min-width: 100%;
-  } /* fullclick */
-  .fr-page {
     min-height: 100%;
-  } /* overflow: false */
+  } 
 }
 
 /* switch between ui modes
@@ -980,6 +968,7 @@
   margin-left: -1px;
   background: #fff;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0); /* fixes rendering in Firefox */
+  z-index: 100000;
 }
 
 .fr-spinner div.fr-spin-1 {
@@ -1016,13 +1005,6 @@
   transform: rotate(150deg);
   -webkit-animation-delay: -0.7s;
   animation-delay: -0.7s;
-}
-.fr-spinner div.fr-spin-6 {
-  -ms-transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
-  -webkit-animation-delay: -0.6s;
-  animation-delay: -0.6s;
 }
 .fr-spinner div.fr-spin-6 {
   -ms-transform: rotate(180deg);
@@ -1418,15 +1400,13 @@
 }
 .fr-window-skin-fresco .fr-close:hover .fr-close-icon {
   background-position: -210px -8px;
+  opacity: 1;
 }
 
 /* - transition */
 .fr-window-skin-fresco.fr-svg .fr-close .fr-close-icon {
   background-position: -210px -8px;
   opacity: 0.8;
-}
-.fr-window-skin-fresco .fr-close:hover .fr-close-icon {
-  opacity: 1;
 }
 /* iOS 8.4.1 bug: when opacity changes it'll require 2 taps
    force a single opacity to fix this
@@ -1441,15 +1421,11 @@
   border-color: transparent;
   border-style: solid;
   border-width: 0;
-}
-.fr-window-skin-fresco .fr-thumbnail-wrapper {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-}
-.fr-window-skin-fresco .fr-thumbnail-active .fr-thumbnail-wrapper {
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
-.fr-window-skin-fresco .fr-thumbnail-wrapper {
-  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.3);
+fr-window-skin-fresco .fr-thumbnail-active {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
 .fr-window-skin-fresco .fr-thumbnail-overlay-border {
   border-width: 1px;
