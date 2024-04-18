@@ -11,7 +11,7 @@ class APITestCase(TestCase):
         'attending': 'Yes',
         'vegetarian': 'No',
         'plus_one': 'Yes',
-        'plus_one_name': 'John's Wife',
+        'plus_one_name': 'Johns Wife',
         'plus_one_vegetarian': 'Yes',
         'song_suggestion': 'Song 1'
     }
@@ -60,7 +60,7 @@ class APITestCase(TestCase):
                 'attending': 'Yes',
                 'vegetarian': 'No',
                 'plus_one': 'Yes',
-                'plus_one_name': 'John's Wife',
+                'plus_one_name': 'Johns Wife',
                 'plus_one_vegetarian': 'Yes',
                 'song_suggestion': 'Song 1'
             },
