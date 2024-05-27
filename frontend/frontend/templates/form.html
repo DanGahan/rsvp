@@ -18,10 +18,10 @@
 				
         <div class="form-container">
         <form class="form-horizontal" id="submitForm" method="post" action="{% url 'submit_data' %}">
-          <h4>Please RSVP using the form below:</h4> 
+          <h2>Please RSVP using the form below:</h2> 
   <div class="row mb-3">
     <div class="col-sm-12">
-      <input class="form-control" text" id="name" name="name" placeholder="Name" required >
+      <input class="form-control" text" id="name" name="name" placeholder="  Name" required >
     </div>
   </div>
   <div class="row mb-3">
@@ -33,7 +33,7 @@
      </div>
   </div>
   <div class="row mb-3">
-    <div class="col-sm-12"><h4>If a plus one was included on the invitation please select below:</h4>
+    <div class="col-sm-12"><br/><h3>If a plus one was included on the invitation please select below:</h3>
       <select class="form-control" id="plus_one" name="plus_one" required width="50" >
         <option value="No">No, I will not be bringing a plus one</option>
         <option value ="Yes">Yes, I will be bringing a plus one</option>
@@ -42,11 +42,11 @@
     </div>
   <div class="row mb-3">
     <div class="col-sm-12">
-        <input type="text" id="plus_one_name" name="plus_one_name" placeholder="Plus One's Name" class="form-control" required disabled>
+        <input type="text" id="plus_one_name" name="plus_one_name" placeholder="  Plus One's Name" class="form-control" required disabled>
      </div> 
   </div>
   <div class="row mb-3">
-      <div class="col-sm-12"><h4>Please let us know if you require a vegetarian meal:</h4>
+      <div class="col-sm-12"><br/><h3>Please let us know if you require a vegetarian meal:</h3>
           <select class="form-control" id="vegetarian" name="vegetarian" required>
             <option value="No">No, I do not require a vegetarian option</option>
             <option value ="Yes">Yes, I require a vegetarian option</option>
@@ -63,8 +63,8 @@
     </div>
     <div class="row mb-3">
     <div class="col-sm-12">
-      <h4>Please suggest a song you'd like to hear the DJ play:</h4>
-      <input type="text" id="song_suggestion" name="song_suggestion" placeholder="Artist and Song" class="form-control" required>
+      <br/><h3>Please suggest a song you'd like to hear the DJ play:</h3>
+      <input type="text" id="song_suggestion" name="song_suggestion" placeholder="  Artist and Song" class="form-control" required>
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
@@ -72,7 +72,7 @@
 </div>
 <hr>
 <div class="blog_item">
-	<h4>Information on the schedule of the day, venue details, accommodation options and the wedding list can be found <a href="/success/">here. </a></h4>
+	<h3>Information on the schedule of the day, venue details, accommodation options and the wedding list can be found <a href="/success/">here. </a></h3>
 		</article>
 	</div>
 	<!-- Blog Page end -->
