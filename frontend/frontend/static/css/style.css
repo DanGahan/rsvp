@@ -19,11 +19,11 @@ body {
 	color: #222222;
 	font-family: "Amatic SC", sans-serif;
 	font-weight: 700;
-	font--size: 1.5em;
+	font--size: 3em;
 	-webkit-font-smoothing: antialiased;
 	margin: 0;
     padding: 0;
-	background-color: #BD7956;
+	background-color: #FFFFF0;
 	
 }
 
@@ -42,6 +42,7 @@ h6 {
 h1 {
 	font-size: 15em;
 	text-align: left;
+	line-height: 0.9;
 }
 
 h2 {
@@ -60,7 +61,7 @@ h4 {
 }
 
 h5 {
-	font-size: 18px;
+	font-size: 3em;
 }
 
 h6 {
@@ -362,7 +363,7 @@ ol {
 	color: #222222;
 	padding-top: 5px;
 	margin-right: 15px;
-	font-size: 16px;
+	font-size: 2em;
 }
 
 .header__social a:last-child,
@@ -951,7 +952,7 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 	padding: 4px 13px;
 	border-radius: 2px;
 	color: #fff;
-	background: #BD7956;
+	background:  #FFFFF0;
 	margin-bottom: 20px;
 	text-align: left;
 }
@@ -1228,7 +1229,7 @@ only screen and (min-width: 576px) and (max-width: 767px) {
     padding: 10px;
 	width: 90%;
     margin: 0 auto;
-	background-color: #FEFAE0;
+	background-color:  #FFFFF0;
 }
 
 
@@ -1253,7 +1254,7 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 
 .form-control {
     width: 100%; /* Set the width to 100% to match the width of the text boxes */
-	font-size: 1.5em;
+	font-size: 3em;
 	font-weight: 700;
 }
 
@@ -1272,6 +1273,7 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 	.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
 		background-color: #283618 !important;
 		border-color:  #283618 !important;
+		font-size: 3em; /* Set font size to 3em */
 	}
 
 
