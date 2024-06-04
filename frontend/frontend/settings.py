@@ -79,3 +79,5 @@ DATABASES = {
 STATIC_ROOT = os.path.join(BASE_DIR, 'frontend/static')
 STATIC_URL = '/static/'
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_COOKIE_DOMAIN = '.gahan.me.uk'  # Replace with your domain
+SESSION_COOKIE_SECURE = 'true'
