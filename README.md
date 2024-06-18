@@ -7,7 +7,7 @@
 
 ### rsvp POST
 
-```curl -X POST http://127.0.0.1:5555/rsvp -H "Content-Type: application/json" -d '{"name":"John","attending":"Yes","vegetarian":"Yes","plus_one":"yes","plus_one_name":"Jane","plus_one_vegitarian":"No ","song_suggestion":"Song name"}'```
+```curl -X POST http://127.0.0.1:5555/rsvp -H "Content-Type: application/json" -d '{"name":"John","attending":"Yes","vegetarian":"Yes","wine":"white","plus_one":"yes","plus_one_name":"Jane","plus_one_vegitarian":"No ","plus_one_wine":"red","song_suggestion":"Song name"}'```
 
 ### rsvp GET
 

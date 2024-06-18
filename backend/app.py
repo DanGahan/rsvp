@@ -21,10 +21,13 @@ class rsvps(db.Model):
     name = db.Column(db.String(100), nullable=False)
     attending = db.Column(db.String(10), nullable=False)
     vegetarian = db.Column(db.String(10), nullable=True)
+    wine = db.Column(db.String(10), nullable=True)
     plus_one = db.Column(db.String(10), nullable=True)
     plus_one_name = db.Column(db.String(100), nullable=True)
     plus_one_vegetarian = db.Column(db.String(10), nullable=True)
+    plus_one_wine = db.Column(db.String(10), nullable=True)
     song_suggestion = db.Column(db.String(200), nullable=True)
+    
 
 @app.route('/rsvp', methods=['POST'])
 def create_rsvp():
@@ -40,13 +43,16 @@ def create_rsvp():
     name = data['name']
     attending = data['attending']
     vegetarian = data['vegetarian']
+    wine = data['wine']
     plus_one = data['plus_one']
     plus_one_name = data.get('plus_one_name', '')
     plus_one_vegetarian = data.get('plus_one_vegetarian', False)
+    plus_one_wine = data.get('plus_one_wine', False)
     song_suggestion = data['song_suggestion']
+    
 
     # Create a new RSVP entry
-    rsvp = rsvps(name=name, attending=attending, vegetarian=vegetarian, plus_one=plus_one, plus_one_name=plus_one_name, plus_one_vegetarian=plus_one_vegetarian, song_suggestion=song_suggestion)
+    rsvp = rsvps(name=name, attending=attending, vegetarian=vegetarian, wine=wine, plus_one=plus_one, plus_one_name=plus_one_name, plus_one_vegetarian=plus_one_vegetarian, plus_one_wine=plus_one_wine, song_suggestion=song_suggestion)
     db.session.add(rsvp) 
     db.session.commit()
 
@@ -55,7 +61,7 @@ def create_rsvp():
 @app.route('/rsvps', methods=['GET'])
 def get_all_rsvps():
     all_rsvps = rsvps.query.all()
-    rsvps_list = [{'id': rsvp.id, 'name': rsvp.name, 'attending': rsvp.attending, 'vegetarian': rsvp.vegetarian, 'plus_one': rsvp.plus_one, 'plus_one_name': rsvp.plus_one_name, 'plus_one_vegetarian': rsvp.plus_one_vegetarian, 'song_suggestion': rsvp.song_suggestion} for rsvp in all_rsvps]
+    rsvps_list = [{'id': rsvp.id, 'name': rsvp.name, 'attending': rsvp.attending, 'vegetarian': rsvp.vegetarian, 'wine':rsvp.wine, 'plus_one': rsvp.plus_one, 'plus_one_name': rsvp.plus_one_name, 'plus_one_vegetarian': rsvp.plus_one_vegetarian, 'plus_one_wine': rsvp.plus_one_wine, 'song_suggestion': rsvp.song_suggestion} for rsvp in all_rsvps]
     return jsonify(rsvps_list)
 
   # Define the model

@@ -2,16 +2,20 @@ $(document).ready(function() {
     // Initialize the form elements
     let attendingSelect = $("#attending");
     let vegetarianSelect = $("#vegetarian");
+    let wineSelect = $("#wine");
     let plusOneSelect = $("#plus_one");
     let plusOneNameInput = $("#plus_one_name");
     let plusOneVegetarianSelect = $("#plus_one_vegetarian");
+    let plusOneWineSelect = $("#plus_one_wine");
     let songSuggestionInput = $("#song_suggestion");
   
     // Disable initial form elements
     vegetarianSelect.prop("disabled", true).addClass("disabled");
+    wineSelect.prop("disabled", true).addClass("disabled");
     plusOneSelect.prop("disabled", true).addClass("disabled");
     plusOneNameInput.prop("disabled", true).addClass("disabled");
     plusOneVegetarianSelect.prop("disabled", true).addClass("disabled");
+    plusOneWineSelect.prop("disabled", true).addClass("disabled");
     songSuggestionInput.prop("disabled", true).addClass("disabled");
   
     // Enable or disable form elements based on the selected values
@@ -20,22 +24,27 @@ $(document).ready(function() {
   
       if (attendingValue === "Yes") {
         vegetarianSelect.prop("disabled", false).removeClass("disabled");
+        wineSelect.prop("disabled", false).removeClass("disabled");
         plusOneSelect.prop("disabled", false).removeClass("disabled");
   
         if (plusOneSelect.val() === "Yes") {
           plusOneNameInput.prop("disabled", false).removeClass("disabled");
           plusOneVegetarianSelect.prop("disabled", false).removeClass("disabled");
+          plusOneWineSelect.prop("disabled", false).removeClass("disabled");
         } else {
           plusOneNameInput.prop("disabled", true).addClass("disabled");
           plusOneVegetarianSelect.prop("disabled", true).addClass("disabled");
+          plusOneWineSelect.prop("disabled", true).addClass("disabled");
         }
   
         songSuggestionInput.prop("disabled", false).removeClass("disabled");
       } else {
         vegetarianSelect.prop("disabled", true).addClass("disabled");
+        wineSelect.prop("disabled", true).addClass("disabled");
         plusOneSelect.prop("disabled", true).addClass("disabled");
         plusOneNameInput.prop("disabled", true).addClass("disabled");
         plusOneVegetarianSelect.prop("disabled", true).addClass("disabled");
+        plusOneWineSelect.prop("disabled", true).addClass("disabled");
         songSuggestionInput.prop("disabled", true).addClass("disabled");
       }
     });
@@ -45,9 +54,12 @@ $(document).ready(function() {
       if (attendingSelect.val() === "Yes" && plusOneSelect.val() === "Yes") {
         plusOneNameInput.prop("disabled", false).removeClass("disabled");
         plusOneVegetarianSelect.prop("disabled", false).removeClass("disabled");
+        plusOneWineSelect.prop("disabled", false).removeClass("disabled");
+
       } else {
         plusOneNameInput.prop("disabled", true).addClass("disabled");
         plusOneVegetarianSelect.prop("disabled", true).addClass("disabled");
+        plusOneWineSelect.prop("disabled", true).addClass("disabled");
       }
     });
   });
