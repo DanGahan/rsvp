@@ -29,9 +29,11 @@ def submit_data(request):
         name = request.POST.get('name')
         attending = request.POST.get('attending')
         vegetarian = request.POST.get('vegetarian')
+        wine = request.POST.get('wine')
         plus_one = request.POST.get('plus_one')
         plus_one_name = request.POST.get('plus_one_name')
         plus_one_vegetarian = request.POST.get('plus_one_vegetarian')
+        plus_one_wine = request.POST.get('plus_one_wine')
         song_suggestion = request.POST.get('song_suggestion')
 
         # Prepare data for API call
@@ -39,9 +41,11 @@ def submit_data(request):
             'name': name,
             'attending': attending,
             'vegetarian': vegetarian,
+            'wine': wine,
             'plus_one': plus_one,
             'plus_one_name': plus_one_name,
             'plus_one_vegetarian': plus_one_vegetarian,
+            'plus_one_wine': plus_one_wine,
             'song_suggestion': song_suggestion
         }
 
