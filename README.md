@@ -15,7 +15,7 @@
 
 ### Evening rsvp POST
 
-```curl -X POST http://127.0.0.1:5555/evening_rsvp -H "Content-Type: application/json" -d '{"name":"John","attending":"Yes","plus_one":"yes","plus_one_name":"Jane"}'```
+```curl -X POST http://127.0.0.1:5555/evening_rsvp -H "Content-Type: application/json" -d '{"name":"John","attending":"Yes","vegetarian":"no","plus_one":"yes","plus_one_name":"Jane", "plus_one_vegetarian":"no"}'```
 
 ### Evening rsvp GET
 

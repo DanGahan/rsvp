@@ -80,15 +80,19 @@ def evening_rsvp_submit_data(request):
         # Extract form data
         name = request.POST.get('name')
         attending = request.POST.get('attending')
+        vegetarian = request.POST.get('vegetarian') 
         plus_one = request.POST.get('plus_one')
         plus_one_name = request.POST.get('plus_one_name')
+        plus_one_vegetarian = request.POST.get('plus_one_vegetarian')
 
         # Prepare data for API call
         data = {
             'name': name,
             'attending': attending,
+            'vegetarian': vegetarian,
             'plus_one': plus_one,
             'plus_one_name': plus_one_name,
+            'plus_one_vegetarian': plus_one_vegetarian,
         }
 
         headers = {
@@ -108,7 +112,7 @@ def evening_rsvp_submit_data(request):
             #return JsonResponse({'status': 'success', 'message': 'Data submitted successfully'})
                     # Redirect to the success page with a success parameter
            request.session['rsvp_success'] = True
-           return redirect('success_page')
+           return redirect('eveningsuccess_page')
         else:
             return JsonResponse({'status': 'error', 'message': 'Failed to submit data to backend'}, status=500)
     else:
@@ -124,6 +128,17 @@ def success_page_view(request):
             return render(request, 'success.html', {'success_message': success_message})
     else: 
         return render(request, 'success.html')
+
+##########################################################################
+#Set RSVP message on evening success page if navigated to from RSVP Post         #
+##########################################################################
+def eveningsuccess_page_view(request):
+    rsvp_success = request.session.get('rsvp_success', False)
+    if rsvp_success: 
+            success_message = 'RSVP submitted successfully!'
+            return render(request, 'eveningsuccess.html', {'success_message': success_message})
+    else: 
+        return render(request, 'eveningsuccess.html')
 
 ##########################################################
 #GET into backend API to retrieve all rsvps              #

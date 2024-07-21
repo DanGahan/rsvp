@@ -85,8 +85,10 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Attending?</th>
+                    <th>Vegetarian?</th>
                     <th>Plus One</th>
                     <th>Plus One Name</th>
+                    <th>Plus One Vegetarian?</th>
                 </tr>
             </thead>
             <tbody>
@@ -95,8 +97,10 @@
                         <td>{{ evening_rsvp.id }}</td>
                         <td>{{ evening_rsvp.name }}</td>
                         <td>{{ evening_rsvp.attending }}</td>
+                        <td>{{ evening_rsvp.vegetarian }}</td>
                         <td>{{ evening_rsvp.plus_one }}</td>
                         <td>{{ evening_rsvp.plus_one_name }}</td>
+                        <td>{{ evening_rsvp.plus_one_vegetarian }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
