@@ -69,8 +69,10 @@ class evening_rsvps(db.Model):
       id = db.Column(db.Integer, primary_key=True)
       name = db.Column(db.String(100), nullable=False)
       attending = db.Column(db.String(10), nullable=False)
+      vegetarian = db.Column(db.String(10), nullable=False)
       plus_one = db.Column(db.String(10), nullable=True)
       plus_one_name = db.Column(db.String(100), nullable=True)
+      plus_one_vegetarian = db.Column(db.String(10), nullable=False)
 
 @app.route('/evening_rsvp', methods=['POST'])
 def create_evening_rsvp():
@@ -85,11 +87,12 @@ def create_evening_rsvp():
 
       name = data['name']
       attending = data['attending']
+      vegetarian = data['vegetarian']
       plus_one = data['plus_one']
       plus_one_name = data.get('plus_one_name', '')
-
+      plus_one_vegetarian = data['plus_one_vegetarian']
       # Create a new RSVP entry
-      evening_rsvp = evening_rsvps(name=name, attending=attending, plus_one=plus_one, plus_one_name=plus_one_name)
+      evening_rsvp = evening_rsvps(name=name, attending=attending, vegetarian=vegetarian, plus_one=plus_one, plus_one_name=plus_one_name, plus_one_vegetarian=plus_one_vegetarian)
       db.session.add(evening_rsvp)
       db.session.commit()
 
@@ -98,7 +101,7 @@ def create_evening_rsvp():
 @app.route('/evening_rsvps', methods=['GET'])
 def get_all_evening_rsvps():
       all_evening_rsvps = evening_rsvps.query.all()
-      evening_rsvps_list = [{'id': evening_rsvp.id, 'name': evening_rsvp.name, 'attending': evening_rsvp.attending, 'plus_one': evening_rsvp.plus_one, 'plus_one_name': evening_rsvp.plus_one_name} for evening_rsvp in all_evening_rsvps]
+      evening_rsvps_list = [{'id': evening_rsvp.id, 'name': evening_rsvp.name, 'attending': evening_rsvp.attending, 'vegetarian': evening_rsvp.vegetarian, 'plus_one': evening_rsvp.plus_one, 'plus_one_name': evening_rsvp.plus_one_name, 'plus_one_vegetarian': evening_rsvp.plus_one_vegetarian} for evening_rsvp in all_evening_rsvps]
       return jsonify(evening_rsvps_list)
 
 @app.route('/rsvp_count', methods=['GET'])

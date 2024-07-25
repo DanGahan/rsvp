@@ -9,6 +9,7 @@ ENV POSTGRES_PASSWORD=password
 # Copy the SQL initialization script into the container
 COPY init-db.sql /docker-entrypoint-initdb.d/
 COPY wine.sql /docker-entrypoint-initdb.d/
+COPY ZeveningVeggie.sql /docker-entrypoint-initdb.d/
 
 # Expose PostgreSQL port
 EXPOSE 5432
