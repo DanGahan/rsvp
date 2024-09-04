@@ -1,6 +1,6 @@
 Flask==3.0.3
 flask-testing
-SQLAlchemy==2.0.32
+SQLAlchemy==2.0.33
 psycopg2-binary==2.9.9
 Flask-SQLAlchemy==3.1.1  # Specify the version compatible with Flask and SQLAlchemy
 coverage
