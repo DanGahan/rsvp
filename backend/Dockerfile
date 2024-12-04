@@ -1,7 +1,7 @@
 # Use an official Python runtime as a parent image
 
 # Stage 1: Build stage
-FROM python:3.8-slim-buster AS builder
+FROM python:3.13.0-slim-bookworm AS builder
 
 # Set the working directory in the container
 WORKDIR /app
